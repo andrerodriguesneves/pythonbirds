@@ -4,9 +4,10 @@
 class Pessoa:
     
     # atributos de instancia
-    def __init__(self, nome=None, idade=35):
+    def __init__(self, *filhos,  nome=None, idade=35):
         self.nome = nome
         self.idade = idade 
+        self.filhos = list(filhos)
         
     
     ##
@@ -15,10 +16,20 @@ class Pessoa:
     
     
 if __name__ == '__main__':
-    p = Pessoa('André')
+    andre = Pessoa(nome='André')
+    luiz = Pessoa(andre, nome='Luiz')
    
-    print(Pessoa.cumprimentar(p))
-    print(id(p))
-    print(p.cumprimentar())
-    print(p.nome)
-    print(p.idade)
+    print(Pessoa.cumprimentar(luiz))
+    print(id(luiz))
+    print(luiz.cumprimentar())
+    print(luiz.nome)
+    print(luiz.idade)
+    for filhos in luiz.filhos:
+        print(filhos.nome)
+
+    # atributo dinamico | __dict__        
+    luiz.sobrenome = 'Neves'
+    
+    print(luiz.sobrenome)
+    print(luiz.__dict__)
+    print(andre.__dict__)
