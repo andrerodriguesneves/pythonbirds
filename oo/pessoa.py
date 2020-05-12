@@ -3,6 +3,10 @@
 
 class Pessoa:
     
+    # atributos de classe 
+    # pode ser acessado direto pela classe exmplo: Pessoa.olhos
+    olhos = 2 
+    
     # atributos de instancia
     def __init__(self, *filhos,  nome=None, idade=35):
         self.nome = nome
@@ -14,6 +18,10 @@ class Pessoa:
     def cumprimentar(self):
         return f'Olá {id(self)}'
     
+    
+    @staticmethod
+    def metodo_estatico():
+        print('Ola Mundo')
     
 if __name__ == '__main__':
     andre = Pessoa(nome='André')
@@ -29,7 +37,15 @@ if __name__ == '__main__':
 
     # atributo dinamico | __dict__        
     luiz.sobrenome = 'Neves'
-    
+    luiz.olhos = 1 
+    Pessoa.olhos = 3
     print(luiz.sobrenome)
     print(luiz.__dict__)
     print(andre.__dict__)
+    print(Pessoa.olhos)
+    print(andre.olhos)
+    print(luiz.olhos)
+
+    Pessoa.metodo_estatico()
+    
+    luiz.metodo_estatico()
